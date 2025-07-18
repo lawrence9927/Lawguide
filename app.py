@@ -1,6 +1,6 @@
+import streamlit as st
 import openai
-import os
-# Set your API key securely (recommended for
+
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 def ai_legal_guide(question):
