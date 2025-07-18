@@ -1,7 +1,6 @@
 import streamlit as st
 import openai
 
-# Load the API key securely from Streamlit Secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 st.set_page_config(page_title="AI Lawyer Assistant", layout="centered")
@@ -15,18 +14,19 @@ def ai_legal_guide(query):
     prompt = (
         "You are an expert Indian legal assistant. "
         "Given the following legal query, offer specific statutes, relevant case law, and clear guidance. "
-        "Always base your answer on Indian law with short references. "
-        "\n\nQuery: " + query
-        + "\n\nAI Legal Answer:"
+        "Always base your answer on Indian law with short references.\n\n"
+        f"Query: {query}\n\nAI Legal Answer:"
     )
     try:
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
             max_tokens=512,
             temperature=0.2,
         )
-        return response["choices"][0]["message"]["content"].strip()
+        return response.choices[0].message.content.strip()
     except Exception as e:
         return f"Error: {e}"
 
