@@ -15,7 +15,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ------------------ OPENROUTER API CONFIG ------------------
-OPENROUTER_API_KEY = "API_KEY"
+OPENROUTER_API_KEY = "API_KEY"  # Replace with your actual API key
 MODEL = "mistralai/mistral-small-3.2-24b-instruct:free"
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
